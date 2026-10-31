@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>API Doctor | API History</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="history.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">✚</div>
+
+            <div>
+                <h2>API Doctor</h2>
+                <span>Developer Workspace</span>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html#api-tester" class="nav-item">
+                <span class="nav-icon">⌘</span>
+                <span>API Tester</span>
+            </a>
+
+            <a href="index.html#dashboard" class="nav-item">
+                <span class="nav-icon">◈</span>
+                <span>Diagnostics</span>
+            </a>
+
+            <a href="index.html#comparator" class="nav-item">
+                <span class="nav-icon">{ }</span>
+                <span>JSON Comparator</span>
+            </a>
+
+            <a href="index.html#code-fix" class="nav-item">
+                <span class="nav-icon">⌘</span>
+                <span>AI Code Fix</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-label">TOOLS</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="history.html" class="nav-item active">
+                <span class="nav-icon">◷</span>
+                <span>API History</span>
+            </a>
+
+            <a href="control-center.html" class="nav-item">
+                <span class="nav-icon">▦</span>
+                <span>Control Center</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-info">
+                <span class="status-dot"></span>
+                <span>API Development Tools</span>
+            </div>
+
+            <div class="sidebar-version">
+                API Doctor v1.0<br>
+                AI-powered diagnostics
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN AREA
+    ====================================== -->
+
+    <div class="main-area">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="breadcrumb">Workspace</span>
+
+                <span class="breadcrumb-divider">/</span>
+
+                <span class="breadcrumb-current">
+                    API History
+                </span>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <a
+                    class="history-back-link"
+                    href="index.html"
+                >
+                    ← Back to Workspace
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             PAGE CONTENT
+        ====================================== -->
+
+        <main class="workspace">
+
+            <!-- PAGE HEADING -->
+
+            <section class="page-heading">
+
+                <div>
+
+                    <h1>API Request History</h1>
+
+                    <p>
+                        Review previously tested API requests
+                        and their diagnostic results.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 REQUEST RECORDS
+            ====================================== -->
+
+            <section class="workspace-panel history-page-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-tag">
+                            SAVED REQUESTS
+                        </span>
+
+                        <h2>Request Records</h2>
+
+                        <p id="historyCount">
+                            Loading saved requests...
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="refreshHistoryButton"
+                    >
+                        ↻ Refresh History
+                    </button>
+
+                </div>
+
+
+                <!-- SEARCH AND FILTER -->
+
+                <div class="history-controls">
+
+                    <input
+                        type="search"
+                        id="historySearch"
+                        placeholder="Search endpoint or method..."
+                    >
+
+                    <select id="historyMethodFilter">
+
+                        <option value="ALL">All Methods</option>
+
+                        <option value="GET">GET</option>
+
+                        <option value="POST">POST</option>
+
+                        <option value="PUT">PUT</option>
+
+                        <option value="PATCH">PATCH</option>
+
+                        <option value="DELETE">DELETE</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- HISTORY TABLE -->
+
+                <div class="history-table-wrapper">
+
+                    <table class="history-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Endpoint</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="historyList">
+
+                            <tr>
+                                <td
+                                    colspan="7"
+                                    class="history-empty"
+                                >
+                                    Loading history...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 REQUEST DETAILS
+            ====================================== -->
+
+            <section
+                class="workspace-panel history-details"
+                id="historyDetails"
+                hidden
+            >
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-tag">
+                            REQUEST INFORMATION
+                        </span>
+
+                        <h2>Request Details</h2>
+
+                    </div>
+
+                </div>
+
+
+                <p id="historyDetailMessage">
+                    Select a record to view its details.
+                </p>
+
+
+                <div id="historyDetailContent"></div>
+
+            </section>
+
+
+            <!-- =====================================
+                 FOOTER
+            ====================================== -->
+
+            <footer class="footer">
+
+                <p>
+                    API Doctor © 2026 |
+                    AI-Powered API Diagnostics
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>

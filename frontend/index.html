@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>API Doctor | Developer Workspace</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✚</div>
+
+            <div>
+                <h2>API Doctor</h2>
+                <span>Developer Workspace</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#api-tester" class="nav-item active">
+                <span class="nav-icon">⌘</span>
+                <span>API Tester</span>
+            </a>
+
+            <a href="#dashboard" class="nav-item">
+                <span class="nav-icon">◈</span>
+                <span>Diagnostics</span>
+            </a>
+
+            <a href="#comparator" class="nav-item">
+                <span class="nav-icon">{ }</span>
+                <span>JSON Comparator</span>
+            </a>
+
+            <a href="#code-fix" class="nav-item">
+                <span class="nav-icon">⌘</span>
+                <span>AI Code Fix</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">TOOLS</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="history.html" class="nav-item">
+                <span class="nav-icon">◷</span>
+                <span>API History</span>
+            </a>
+
+            <a href="control-center.html" class="nav-item">
+                <span class="nav-icon">▦</span>
+                <span>Control Center</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-info">
+                <span class="status-dot"></span>
+                <span>API Development Tools</span>
+            </div>
+
+            <div class="sidebar-version">
+                API Doctor v1.0<br>
+                AI-powered diagnostics
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN AREA
+    ====================================== -->
+
+    <div class="main-area">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <span class="breadcrumb">Workspace</span>
+                <span class="breadcrumb-divider">/</span>
+                <span class="breadcrumb-current">API Doctor</span>
+            </div>
+
+            <div class="topbar-right">
+
+                <span class="workspace-status">
+                    <span class="status-dot"></span>
+                    Development Workspace
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <main class="workspace">
+
+            <!-- =====================================
+                 PAGE HEADING
+            ====================================== -->
+
+            <section class="page-heading">
+
+                <div>
+                    <h1>API Development Workspace</h1>
+
+                    <p>
+                        Test, diagnose and improve your APIs
+                        with intelligent insights.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 API TESTER
+            ====================================== -->
+
+            <section
+                class="workspace-panel api-tester"
+                id="api-tester"
+            >
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">REQUEST BUILDER</span>
+
+                        <h2>API Tester</h2>
+
+                        <p>
+                            Configure and send your API request.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="apiForm" onsubmit="return false;">
+
+                    <!-- METHOD AND URL -->
+
+                    <div class="request-row">
+
+                        <div class="method-group">
+
+                            <label for="method">HTTP Method</label>
+
+                            <select id="method">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="PATCH">PATCH</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="endpoint-group">
+
+                            <label for="url">API Endpoint</label>
+
+                            <input
+                                type="url"
+                                id="url"
+                                placeholder="https://api.example.com/users"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="send-group">
+
+                            <label>&nbsp;</label>
+
+                            <button
+                                type="submit"
+                                id="testButton"
+                            >
+                                Send Request →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HEADERS AND BODY -->
+
+                    <div class="request-fields">
+
+                        <div class="field-column">
+
+                            <label for="headers">
+                                Request Headers (JSON)
+                            </label>
+
+                            <textarea
+                                id="headers"
+                                placeholder='{"Content-Type": "application/json"}'
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="field-column">
+
+                            <label for="body">
+                                Request Body (JSON)
+                            </label>
+
+                            <textarea
+                                id="body"
+                                placeholder='{"name": "John"}'
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================================
+                         AUTHENTICATION
+                    ====================================== -->
+
+                    <div class="feature-auth-panel">
+
+                        <h3>Authentication</h3>
+
+                        <select
+                            id="authType"
+                            aria-label="Authentication type"
+                        >
+
+                            <option value="none">
+                                No Authentication
+                            </option>
+
+                            <option value="bearer">
+                                Bearer Token
+                            </option>
+
+                            <option value="apiKey">
+                                API Key
+                            </option>
+
+                            <option value="basic">
+                                Basic Auth
+                            </option>
+
+                        </select>
+
+
+                        <div id="authFields" hidden>
+
+                            <input
+                                id="authKey"
+                                type="text"
+                                placeholder="Enter token or username"
+                                autocomplete="off"
+                                hidden
+                            >
+
+                            <input
+                                id="authSecret"
+                                type="password"
+                                placeholder="Enter password or API key"
+                                autocomplete="new-password"
+                                hidden
+                            >
+
+                            <input
+                                id="authHeaderName"
+                                type="text"
+                                placeholder="API key header name (e.g. x-api-key)"
+                                autocomplete="off"
+                                hidden
+                            >
+
+                        </div>
+
+
+                        <p class="feature-note">
+                            Authentication credentials are used
+                            only for the current API request.
+                        </p>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- =====================================
+                 API RESPONSE VIEWER
+            ====================================== -->
+
+            <section class="workspace-panel response-panel">
+
+                <div class="panel-heading response-header">
+
+                    <div>
+                        <span class="section-tag">SERVER OUTPUT</span>
+
+                        <h2>API Response</h2>
+
+                        <p>
+                            Inspect the response returned by your endpoint.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="copyResponse"
+                    >
+                        Copy JSON
+                    </button>
+
+                </div>
+
+
+                <pre id="response">Your API response will appear here.</pre>
+
+                <p id="copyMessage"></p>
+
+            </section>
+
+
+            <!-- =====================================
+                 API DIAGNOSTICS
+            ====================================== -->
+
+            <section
+                class="workspace-panel dashboard"
+                id="dashboard"
+            >
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">ANALYSIS</span>
+
+                        <h2>API Diagnostics</h2>
+
+                        <p>
+                            Performance and health information
+                            for your API.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- SUMMARY CARDS -->
+
+                <div class="summary-cards">
+
+                    <div class="result-card">
+
+                        <span class="metric-label">
+                            HTTP STATUS
+                        </span>
+
+                        <p id="statusCode">--</p>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <span class="metric-label">
+                            RESPONSE TIME
+                        </span>
+
+                        <p id="responseTime">--</p>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <span class="metric-label">
+                            API HEALTH
+                        </span>
+
+                        <p id="apiHealth">--</p>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <span class="metric-label">
+                            HEALTH SCORE
+                        </span>
+
+                        <p id="healthScore">--</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DIAGNOSTIC DETAILS -->
+
+                <div class="diagnostic-grid">
+
+                    <div class="result-section critical-section">
+
+                        <h3>Critical Issues</h3>
+
+                        <div id="criticalIssues">
+                            No critical issues detected.
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-section warning-section">
+
+                        <h3>Warnings</h3>
+
+                        <div id="warnings">
+                            No warnings detected.
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-section recommendation-section">
+
+                        <h3>Recommendations</h3>
+
+                        <div id="recommendations">
+                            Recommendations will appear here.
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-section ai-section">
+
+                        <h3>✦ AI Diagnosis</h3>
+
+                        <div id="aiDiagnosis">
+                            AI diagnosis will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 JSON COMPARATOR
+            ====================================== -->
+
+            <section
+                class="workspace-panel comparator"
+                id="comparator"
+            >
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">DEVELOPER TOOL</span>
+
+                        <h2>JSON Response Comparator</h2>
+
+                        <p>
+                            Compare two JSON responses and identify
+                            structural and value differences.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-inputs">
+
+                    <div class="comparison-box">
+
+                        <label for="responseA">
+                            Response A
+                        </label>
+
+                        <textarea
+                            id="responseA"
+                            placeholder='{"id": 1, "name": "John"}'
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="comparison-box">
+
+                        <label for="responseB">
+                            Response B
+                        </label>
+
+                        <textarea
+                            id="responseB"
+                            placeholder='{"id": 1, "name": "Peter"}'
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="compareButton"
+                >
+                    Compare Responses
+                </button>
+
+
+                <div
+                    id="comparisonResults"
+                    class="comparison-results"
+                >
+
+                    <h3>Comparison Results</h3>
+
+                    <p id="comparisonSummary">
+                        Your comparison results will appear here.
+                    </p>
+
+                    <div id="comparisonDetails"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 AI CODE FIX GENERATOR
+            ====================================== -->
+
+            <section
+                class="workspace-panel code-fix-section"
+                id="code-fix"
+            >
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">AI ASSISTANT</span>
+
+                        <h2>AI Code Fix Generator</h2>
+
+                        <p>
+                            Generate suggested code fixes based on
+                            your API diagnostic results.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="code-fix-controls">
+
+                    <div class="language-group">
+
+                        <label for="programmingLanguage">
+                            Programming Language
+                        </label>
+
+                        <select id="programmingLanguage">
+
+                            <option value="Python">Python</option>
+                            <option value="C">C</option>
+                            <option value="C++">C++</option>
+                            <option value="Java">Java</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="TypeScript">TypeScript</option>
+                            <option value="PHP">PHP</option>
+                            <option value="HTML">HTML</option>
+                            <option value="SQL">SQL</option>
+                            <option value="Go">Go</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="generateFixButton"
+                    >
+                        Generate AI Code Fix
+                    </button>
+
+                </div>
+
+
+                <div class="code-fix-results">
+
+                    <h3>Generated Code Fix</h3>
+
+                    <p id="fixMessage">
+                        Your AI-generated code fix will appear here.
+                    </p>
+
+                    <pre id="generatedCode">No code fix generated yet.</pre>
+
+                    <button
+                        type="button"
+                        id="copyFixButton"
+                    >
+                        Copy Code
+                    </button>
+
+                    <p id="fixCopyMessage"></p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 FOOTER
+            ====================================== -->
+
+            <footer class="footer">
+
+                <p>
+                    API Doctor © 2026 |
+                    AI-Powered API Diagnostics
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>

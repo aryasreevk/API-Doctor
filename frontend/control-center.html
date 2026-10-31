@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>API Doctor | Control Center</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✚</div>
+
+            <div>
+                <h2>API Doctor</h2>
+                <span>Developer Workspace</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html#api-tester" class="nav-item">
+                <span class="nav-icon">⌘</span>
+                <span>API Tester</span>
+            </a>
+
+            <a href="index.html#dashboard" class="nav-item">
+                <span class="nav-icon">◈</span>
+                <span>Diagnostics</span>
+            </a>
+
+            <a href="index.html#comparator" class="nav-item">
+                <span class="nav-icon">{ }</span>
+                <span>JSON Comparator</span>
+            </a>
+
+            <a href="index.html#code-fix" class="nav-item">
+                <span class="nav-icon">⌘</span>
+                <span>AI Code Fix</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">TOOLS</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="history.html" class="nav-item">
+                <span class="nav-icon">◷</span>
+                <span>API History</span>
+            </a>
+
+            <a href="control-center.html" class="nav-item active">
+                <span class="nav-icon">▦</span>
+                <span>Control Center</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-info">
+                <span class="status-dot"></span>
+                <span>API Development Tools</span>
+            </div>
+
+            <div class="sidebar-version">
+                API Doctor v1.0<br>
+                AI-powered diagnostics
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN AREA -->
+    <div class="main-area">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <span class="breadcrumb">Workspace</span>
+                <span class="breadcrumb-divider">/</span>
+                <span class="breadcrumb-current">Control Center</span>
+            </div>
+
+            <div class="topbar-right">
+
+                <span class="workspace-status">
+                    <span class="status-dot"></span>
+                    Development Workspace
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <main class="workspace">
+
+            <!-- PAGE HEADING -->
+            <section class="page-heading">
+
+                <div>
+                    <span class="section-tag">WORKSPACE INSIGHTS</span>
+
+                    <h1>Control Center</h1>
+
+                    <p>
+                        Monitor API performance, manage saved requests,
+                        automate testing and review API security.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshAnalyticsButton"
+                >
+                    ↻ Refresh Analytics
+                </button>
+
+            </section>
+
+
+            <!-- ANALYTICS -->
+            <section class="workspace-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <span class="section-tag">PERFORMANCE OVERVIEW</span>
+                        <h2>Dashboard Analytics</h2>
+
+                        <p>
+                            An overview of your API testing activity.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="analytics-grid">
+
+                    <article class="analytics-card">
+                        <span>Total Requests</span>
+                        <strong id="analyticsTotal">--</strong>
+                    </article>
+
+                    <article class="analytics-card">
+                        <span>Successful Requests</span>
+                        <strong id="analyticsSuccess">--</strong>
+                    </article>
+
+                    <article class="analytics-card">
+                        <span>Failed Requests</span>
+                        <strong id="analyticsFailed">--</strong>
+                    </article>
+
+                    <article class="analytics-card">
+                        <span>Success Rate</span>
+                        <strong id="analyticsRate">--</strong>
+                    </article>
+
+                    <article class="analytics-card">
+                        <span>Average Response Time</span>
+                        <strong id="analyticsTime">--</strong>
+                    </article>
+
+                    <article class="analytics-card">
+                        <span>Average Health Score</span>
+                        <strong id="analyticsHealth">--</strong>
+                    </article>
+
+                    <article class="analytics-card">
+                        <span>Slow Requests</span>
+                        <strong id="analyticsSlow">--</strong>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESPONSE TIME -->
+            <section class="workspace-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">PERFORMANCE MONITORING</span>
+                        <h2>Response-Time Trends</h2>
+
+                        <p>
+                            View response times from your recent API requests.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    id="responseTimeChart"
+                    class="response-time-chart"
+                >
+                    Loading response-time data...
+                </div>
+
+            </section>
+
+
+            <!-- SAVED COLLECTIONS -->
+            <section class="workspace-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">REQUEST MANAGEMENT</span>
+                        <h2>Saved Request Collections</h2>
+
+                        <p>
+                            Save API requests from the API Tester
+                            and reuse them whenever needed.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <h3>Save Current API Request</h3>
+
+                    <p>
+                        Open the API Tester, configure a request,
+                        and save it here for future use.
+                    </p>
+
+                    <div class="collection-save-row">
+
+                        <input
+                            id="collectionName"
+                            type="text"
+                            placeholder="Enter collection name"
+                        >
+
+                        <button
+                            type="button"
+                            id="saveCollectionButton"
+                            disabled
+                        >
+                            Save Current Request
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="collectionMessage"
+                        class="feature-note"
+                    >
+                        Save requests from the API Tester page.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <h3>Your Saved Requests</h3>
+
+                    <div
+                        id="collectionsList"
+                        class="collections-list"
+                    >
+                        Loading saved requests...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AUTOMATION -->
+            <section class="workspace-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">AUTOMATION</span>
+                        <h2>API Test Automation</h2>
+
+                        <p>
+                            Execute your saved API requests automatically.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <h3>Run Saved Requests</h3>
+
+                    <p>
+                        Run all saved requests sequentially.
+                        Results will be added to your API History.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="runCollectionsButton"
+                    >
+                        Run All Saved Requests
+                    </button>
+
+                    <p
+                        id="automationMessage"
+                        class="feature-note"
+                    >
+                        No automation running.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- REPORT EXPORT -->
+            <section class="workspace-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">REPORTING</span>
+                        <h2>Export Reports</h2>
+
+                        <p>
+                            Export your API testing history for
+                            documentation and analysis.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <h3>Download API Reports</h3>
+
+                    <p>
+                        Export your stored API history in JSON
+                        or CSV format.
+                    </p>
+
+                    <div class="export-actions">
+
+                        <button
+                            type="button"
+                            id="exportJsonButton"
+                        >
+                            Export JSON
+                        </button>
+
+                        <button
+                            type="button"
+                            id="exportCsvButton"
+                        >
+                            Export CSV
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SECURITY REVIEW -->
+            <section class="workspace-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="section-tag">SECURITY ANALYSIS</span>
+                        <h2>API Security Review</h2>
+
+                        <p>
+                            Check common HTTP security headers
+                            in your most recently tested API response.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <h3>Security Header Analysis</h3>
+
+                    <p>
+                        This performs a basic response-header review.
+                        It is not a complete security audit.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="securityReviewButton"
+                    >
+                        Review Latest Response
+                    </button>
+
+                    <div
+                        id="securityReviewResults"
+                        class="security-review-results"
+                    >
+                        Test an API first to review its response headers.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+
+                <p>
+                    API Doctor © 2026 | AI-Powered API Diagnostics
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>
